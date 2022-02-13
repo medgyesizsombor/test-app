@@ -29,23 +29,31 @@ function App() {
     const { cities } = counties[currentCounty];
     return (
       <Fragment>
-        {cities.map((city) => (
-          <City
-            key={city}
-            counties={counties}
-            setCounties={setCounties}
-            currentCounty={currentCounty}
-            city={city}
-          />
-        ))}
-        <form className="new-city">
-          <p>Adjon hozzá egy új várost:</p>
-          <input className="new-city-container__input"
+        <div className="cities">
+          {cities.map((city) => (
+            <City
+              key={city}
+              counties={counties}
+              setCounties={setCounties}
+              currentCounty={currentCounty}
+              city={city}
+            />
+          ))}
+        </div>
+        <form>
+          <p className="new-city-container__p">Adjon hozzá egy új várost:</p>
+          <input
+            className="new-city-container__input"
             type="text"
             value={newCityName}
             onChange={({ target }) => setNewCityName(target.value)}
           />
-          <button className="new-city-container__button" onClick={handleNewCity}>Hozzáadás</button>
+          <button
+            className="new-city-container__button"
+            onClick={handleNewCity}
+          >
+            Hozzáadás
+          </button>
         </form>
       </Fragment>
     );
@@ -77,9 +85,8 @@ function App() {
   };
 
   return (
-    <div className="app">
+    <div className="card">
       <h2>Megyék</h2>
-      <div>
       <select
         selected={currentCounty}
         value={currentCounty}
@@ -89,13 +96,16 @@ function App() {
           Válasszon
         </option>
         {Object.keys(counties).map((county) => (
-          <option className="options" key={county} value={county}>
+          <option key={county} value={county}>
             {county}
           </option>
         ))}
       </select>
-      </div>
-      <button className="submit-button"onClick={handleSubmit} disabled={disableButton}>
+      <button
+        className="submit-button"
+        onClick={handleSubmit}
+        disabled={disableButton}
+      >
         Kiválasztás
       </button>
       {showCities && renderCities()}

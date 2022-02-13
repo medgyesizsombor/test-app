@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import { updateLocalStorage } from "../utils/localStorageUtils";
@@ -33,8 +33,6 @@ const City = ({ city, counties, setCounties, currentCounty }) => {
     setCityAsText(true);
   };
 
-  //Form submission canceled because the form is not connected
-
   const handleDelete = () => {
     const newCounties = { ...counties };
     const newCities = newCounties[currentCounty].cities.filter(
@@ -50,7 +48,7 @@ const City = ({ city, counties, setCounties, currentCounty }) => {
 
   return (
     <div className="city-container">
-      {cityAsText && <p  onClick={() => setCityAsText(false)}>{city}</p>}
+      {cityAsText && <p onClick={() => setCityAsText(false)}>{city}</p>}
 
       {!cityAsText && (
         <>
@@ -61,10 +59,25 @@ const City = ({ city, counties, setCounties, currentCounty }) => {
             onChange={({ target }) => setName(target.value)}
             placeholder={city}
           ></input>
-          <div className="city-container__button">
-          <button className="button--default button--danger" onClick={handleDelete}>Törlés</button>
-          <button className="button--default button--inverse" onClick={handleCityUpdate}>Módosít</button>
-          <button className="button--default button--cancel" onClick={handleCancelUpdate}>Mégsem</button>
+          <div>
+            <button
+              className="button--default button--danger"
+              onClick={handleDelete}
+            >
+              Törlés
+            </button>
+            <button
+              className="button--default button--inverse"
+              onClick={handleCityUpdate}
+            >
+              Módosít
+            </button>
+            <button
+              className="button--default button--cancel"
+              onClick={handleCancelUpdate}
+            >
+              Mégsem
+            </button>
           </div>
         </>
       )}

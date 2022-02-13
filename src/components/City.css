@@ -32,6 +32,10 @@ button:focus{
     background-color: #9998A0;
 }
 
+.city-container{
+    padding: 0;
+}
+
 .city-container__input{
     padding:10px;
     border-radius: 5px;
