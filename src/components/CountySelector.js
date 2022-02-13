@@ -32,7 +32,10 @@ const CountySelector = () => {
         defaultValue={options.label}
         onChange={changeHandler}
       />
-      {selectedCounty && <Counties county={counties.counties[selectedCountyId].cities} />}
+      
+      {selectedCounty && (
+        <Counties county={counties.counties[selectedCountyId].cities} />
+      )}
     </div>
   );
 };
