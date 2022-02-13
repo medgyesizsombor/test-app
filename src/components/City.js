@@ -1,25 +1,25 @@
 import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
+
 import { updateLocalStorage } from "../utils/localStorageUtils";
+import "./City.css";
 
 const City = ({ city, counties, setCounties, currentCounty }) => {
   const [name, setName] = useState(city);
-  const [cityText, setCityText] = useState(true);
+  const [cityAsText, setCityAsText] = useState(true);
 
-  const handleCancel = (event) => {
+  const handleCancelUpdate = (event) => {
     event.preventDefault();
-    setCityText(true);
+    setCityAsText(true);
     setName(city);
   };
 
   const handleCityUpdate = (event) => {
     event.preventDefault();
-    console.log(name, "name");
     if (!name) return;
     const newCounties = { ...counties };
 
     const newCities = newCounties[currentCounty].cities.map((c) => {
-      console.log(c);
       if (c === city) {
         return name;
       }
@@ -30,7 +30,7 @@ const City = ({ city, counties, setCounties, currentCounty }) => {
 
     setCounties(newCounties);
     updateLocalStorage("counties", newCounties);
-    setCityText(true);
+    setCityAsText(true);
   };
 
   //Form submission canceled because the form is not connected
@@ -45,23 +45,27 @@ const City = ({ city, counties, setCounties, currentCounty }) => {
 
     setCounties(newCounties);
     updateLocalStorage("counties", newCounties);
-    setCityText(true);
+    setCityAsText(true);
   };
 
   return (
-    <div>
-      {cityText && <h2 onClick={() => setCityText(false)}>{city}</h2>}
-      {!cityText && (
+    <div className="city-container">
+      {cityAsText && <p  onClick={() => setCityAsText(false)}>{city}</p>}
+
+      {!cityAsText && (
         <>
           <input
+            className="city-container__input"
             type="text"
             value={name}
             onChange={({ target }) => setName(target.value)}
             placeholder={city}
           ></input>
-          <button onClick={handleDelete}>Törlés</button>
-          <button onClick={handleCityUpdate}>Módosít</button>
-          <button onClick={handleCancel}>Mégsem</button>
+          <div className="city-container__button">
+          <button className="button--default button--danger" onClick={handleDelete}>Törlés</button>
+          <button className="button--default button--inverse" onClick={handleCityUpdate}>Módosít</button>
+          <button className="button--default button--cancel" onClick={handleCancelUpdate}>Mégsem</button>
+          </div>
         </>
       )}
     </div>

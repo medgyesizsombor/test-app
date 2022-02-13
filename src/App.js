@@ -6,6 +6,7 @@ import {
   updateLocalStorage,
 } from "./utils/localStorageUtils";
 import City from "./components/City";
+import "./App.css";
 
 function App() {
   const [currentCounty, setCurrentCounty] = useState("");
@@ -29,34 +30,37 @@ function App() {
     return (
       <Fragment>
         {cities.map((city) => (
-          <City 
-            key={city} 
-            counties={counties} 
-            setCounties={setCounties} 
-            currentCounty={currentCounty} 
-            city={city} 
+          <City
+            key={city}
+            counties={counties}
+            setCounties={setCounties}
+            currentCounty={currentCounty}
+            city={city}
           />
         ))}
-        <form>
-          <h2>Egy új város:</h2>
-          <input type="text" value={newCityName} onChange={({ target }) => setNewCityName(target.value)} />
-          <button onClick={handleNewCity}>Hozzáadás</button>
+        <form className="new-city">
+          <p>Adjon hozzá egy új várost:</p>
+          <input className="new-city-container__input"
+            type="text"
+            value={newCityName}
+            onChange={({ target }) => setNewCityName(target.value)}
+          />
+          <button className="new-city-container__button" onClick={handleNewCity}>Hozzáadás</button>
         </form>
       </Fragment>
     );
   };
 
   const handleNewCity = (event) => {
-    const newCounties = {...counties};
+    const newCounties = { ...counties };
     const { cities } = newCounties[currentCounty];
     event.preventDefault();
     cities.push(newCityName);
-    
 
     updateLocalStorage("counties", counties);
     setCounties(newCounties);
-    setNewCityName('');
-  }
+    setNewCityName("");
+  };
 
   const handleSelect = (event) => {
     setShowCities(false);
@@ -73,8 +77,9 @@ function App() {
   };
 
   return (
-    <div>
-      <h2>Let's get started!</h2>
+    <div className="app">
+      <h2>Megyék</h2>
+      <div>
       <select
         selected={currentCounty}
         value={currentCounty}
@@ -84,13 +89,14 @@ function App() {
           Válasszon
         </option>
         {Object.keys(counties).map((county) => (
-          <option key={county} value={county}>
+          <option className="options" key={county} value={county}>
             {county}
           </option>
         ))}
       </select>
-      <button onClick={handleSubmit} disabled={disableButton}>
-        submit
+      </div>
+      <button className="submit-button"onClick={handleSubmit} disabled={disableButton}>
+        Kiválasztás
       </button>
       {showCities && renderCities()}
     </div>

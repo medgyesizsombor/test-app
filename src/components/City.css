@@ -1,0 +1,51 @@
+
+
+button:focus{
+    outline: none;
+}
+
+.button--danger{
+    background-color: #830000;
+    border: 1px solid #830000;
+}
+
+.button--danger:hover{
+    background-color: #750000;
+}
+
+.button--inverse{
+    background: transparent;
+    border: 1px solid #ABA8B2;
+}
+
+.button--inverse:hover{
+    color: #FFFFFF;
+    background-color: #C3C3C3;
+}
+
+.button--cancel{
+    background-color: #ABA8B2;
+    border: 1px solid #ABA8B2;
+}
+
+.button--cancel:hover{
+    background-color: #9998A0;
+}
+
+.city-container__input{
+    padding:10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.city-container__input:focus{
+    outline: none;
+}
+
+.button--default{
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
