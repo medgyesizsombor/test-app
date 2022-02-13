@@ -1,61 +1,68 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
+import { updateLocalStorage } from "../utils/localStorageUtils";
 
-import { getLocalStorage, updateLocalStorage } from "../utils/localStorageUtils";
-
-const City = ({ city, cities }) => {
-  const [currentCities, setCurrentCities] = useState(cities);
-  const [updatingCity, setUpdatingCity] = useState(false);
+const City = ({ city, counties, setCounties, currentCounty }) => {
   const [name, setName] = useState(city);
-  const [changedName, setChangedName] = useState("");
+  const [cityText, setCityText] = useState(true);
 
-
-  const handleUpdate = () => {
-    setUpdatingCity(true);
-    setChangedName("");
-  };
-
-  const handleNotUpdate = () => {
-    setUpdatingCity(false);
-    setName(name);
-  };
-
-  const handleNameChanging = (event) => {
+  const handleCancel = (event) => {
     event.preventDefault();
-    setName(changedName);
-    console.log(city)
-    let ls = localStorage.getItem('counties');
+    setCityText(true);
+    setName(city);
   };
 
-  const handleUpdateNameOfCity = (event) => {
-    setChangedName(event.target.value);
-    console.log(event.target.value);
+  const handleCityUpdate = (event) => {
+    event.preventDefault();
+    console.log(name, "name");
+    if (!name) return;
+    const newCounties = { ...counties };
+
+    const newCities = newCounties[currentCounty].cities.map((c) => {
+      console.log(c);
+      if (c === city) {
+        return name;
+      }
+      return c;
+    });
+
+    newCounties[currentCounty].cities = newCities;
+
+    setCounties(newCounties);
+    updateLocalStorage("counties", newCounties);
+    setCityText(true);
   };
+
+  //Form submission canceled because the form is not connected
 
   const handleDelete = () => {
-    let newCities = currentCities.filter((cities) => cities !== city);
-    setCurrentCities(newCities);
-    console.log(newCities);
+    const newCounties = { ...counties };
+    const newCities = newCounties[currentCounty].cities.filter(
+      (c) => c !== city
+    );
+
+    newCounties[currentCounty].cities = newCities;
+
+    setCounties(newCounties);
+    updateLocalStorage("counties", newCounties);
+    setCityText(true);
   };
 
   return (
     <div>
-      <h2>{name}</h2>
-      {!updatingCity && <button onClick={handleUpdate}>Változtatás</button>}
-      {updatingCity && <button onClick={handleNotUpdate}>Mégse</button>}
-      <button onClick={handleDelete}>Törlés</button>
-      {updatingCity && (
-        <form>
-          <label>
-            Üsd be a város új nevét:
-            <input
-              type="text"
-              value={changedName}
-              onChange={handleUpdateNameOfCity}
-            ></input>
-          </label>
-          <button onClick={handleNameChanging}>Változtatás</button>
-        </form>
+      {cityText && <h2 onClick={() => setCityText(false)}>{city}</h2>}
+      {!cityText && (
+        <>
+          <input
+            type="text"
+            value={name}
+            onChange={({ target }) => setName(target.value)}
+            placeholder={city}
+          ></input>
+          <button onClick={handleDelete}>Törlés</button>
+          <button onClick={handleCityUpdate}>Módosít</button>
+          <button onClick={handleCancel}>Mégsem</button>
+        </>
       )}
     </div>
   );
@@ -63,7 +70,9 @@ const City = ({ city, cities }) => {
 
 City.propTypes = {
   city: PropTypes.string.isRequired,
-  cities: PropTypes.array.isRequired,
+  counties: PropTypes.object.isRequired,
+  setCounties: PropTypes.func.isRequired,
+  currentCounty: PropTypes.string.isRequired,
 };
 
 export default City;

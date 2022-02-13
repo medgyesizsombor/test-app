@@ -1,83 +1,59 @@
 {
-    "counties": [
-      {
-        "name": "Bács-Kiskun megye",
-        "cities": [{ "name": "Kecskemét" }, { "name": "Szentkirály"}]
-      },
-      {
-        "name": "Baranya megye",
-        "cities": [{ "name": "Pécs" }]
-      },
-      {
-        "name": "Békés megye",
-        "cities": [{ "name": "Békéscsaba" }]
-      },
-      {
-        "name": "Borsod-Abaúj-Zemplén megye",
-        "cities": [{ "name": "Miskolc" }]
-      },
-      {
-        "name": "Csongrád-Csanád megye",
-        "cities": [{ "name": "Szeged" }]
-      },
-      {
-        "name": "Fejér megye",
-        "cities": [{ "name": "Székesfehérvár" }]
-      },
-      {
-        "name": "Győr-Moson-Sopron megye",
-        "cities": [{ "name": "Győr" }]
-      },
-      {
-        "name": "Hajdú-Bihar megye",
-        "cities": [{ "name": "Debrecen" }]
-      },
-      {
-        "name": "Heves megye",
-        "cities": [{ "name": "Eger" }]
-      },
-      {
-        "name": "Jász-Nagykun-Szolnok megye",
-        "cities": [{ "name": "Szolnok" }]
-      },
-      {
-        "name": "Komárom-Esztergom megye",
-        "cities": [{ "name": "Tatabánya" }]
-      },
-      {
-        "name": "Nógrád megye",
-        "cities": [{ "name": "Salgotarján" }]
-      },
-      {
-        "name": "Pest megye",
-        "cities": [{ "name": "Budapest" }]
-      },
-      {
-        "name": "Somogy megye",
-        "cities": [{ "name": "Kaposvár" }]
-      },
-      {
-        "name": "Szabolcs-Szatmár-Bereg megye",
-        "cities": [{ "name": "Nyíregyháza" }]
-      },
-      {
-        "name": "Tolna megye",
-        "cities": [{ "name": "Szekszárd" }]
-      },
-      {
-        "name": "Vas megye",
-        "cities": [{ "name": "Szombathely" }]
-      },
-      {
-        "name": "Veszprém megye",
-        "cities": [{ "name": "Veszprém" }]
-      },
-      {
-        "name": "Zala megye",
-        "cities": [{ "name": "Zalaegerszeg" }]
-      }
-    ]
+  "Bács-Kiskun megye": {
+    "cities": ["Kecskemét", "Szentkirály"]
+  },
+  "Baranya megye": {
+    "cities": ["Pécs"]
+  },
+  "Békés megye": {
+    "cities": ["Békéscsaba"]
+  },
+  "Borsod-Abaúj-Zemplén megye": {
+    "cities": ["Miskolc"]
+  },
+  "Csongrád-Csanád megye": {
+    "cities": ["Szeged"]
+  },
+  "Fejér megye": {
+    "cities": ["Székesfehérvár"]
+  },
+  "Győr-Moson-Sopron megye": {
+    "cities": ["Győr"]
+  },
+  "Hajdú-Bihar megye": {
+    "cities": ["Debrecen"]
+  },
+  "Heves megye": {
+    "cities": ["Eger"]
+  },
+  "Jász-Nagykun-Szolnok megye": {
+    "cities": ["Szolnok"]
+  },
+  "Komárom-Esztergom megye megye": {
+    "cities": ["Tatabánya"]
+  },
+  "Nógrád megye": {
+    "cities": ["Salgotarján"]
+  },
+  "Pest megye": {
+    "cities": ["Budapest"]
+  },
+  "Somogy megye": {
+    "cities": ["Kaposvár"]
+  },
+  "Szabolcs-Szatmár-Bereg megye": {
+    "cities": ["Nyíregyháza"]
+  },
+  "Tolna megye": {
+    "cities": ["Szekszárd"]
+  },
+  "Vas megye": {
+    "cities": ["Szombathely"]
+  },
+  "Veszprém megye": {
+    "cities": ["Veszprém"]
+  },
+  "Zala megye": {
+    "cities": ["Zalaegerszeg"]
   }
-
-
-  
+}

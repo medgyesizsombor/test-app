@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 
-import countiesJSON from "./test.json";
+import countiesJSON from "./counties.json";
 import {
   getLocalStrorage,
   updateLocalStorage,
@@ -12,6 +12,7 @@ function App() {
   const [showCities, setShowCities] = useState(false);
   const [counties, setCounties] = useState({});
   const [disableButton, setDisableButton] = useState(true);
+  const [newCityName, setNewCityName] = useState("");
 
   useEffect(() => {
     let countiesLS = getLocalStrorage("counties");
@@ -25,8 +26,37 @@ function App() {
 
   const renderCities = () => {
     const { cities } = counties[currentCounty];
-    return cities.map((city) => <City cities={cities} key={city} city={city} />);
+    return (
+      <Fragment>
+        {cities.map((city) => (
+          <City 
+            key={city} 
+            counties={counties} 
+            setCounties={setCounties} 
+            currentCounty={currentCounty} 
+            city={city} 
+          />
+        ))}
+        <form>
+          <h2>Egy új város:</h2>
+          <input type="text" value={newCityName} onChange={({ target }) => setNewCityName(target.value)} />
+          <button onClick={handleNewCity}>Hozzáadás</button>
+        </form>
+      </Fragment>
+    );
   };
+
+  const handleNewCity = (event) => {
+    const newCounties = {...counties};
+    const { cities } = newCounties[currentCounty];
+    event.preventDefault();
+    cities.push(newCityName);
+    
+
+    updateLocalStorage("counties", counties);
+    setCounties(newCounties);
+    setNewCityName('');
+  }
 
   const handleSelect = (event) => {
     setShowCities(false);
@@ -51,7 +81,7 @@ function App() {
         onChange={handleSelect}
       >
         <option disabled value="">
-          Válassz
+          Válasszon
         </option>
         {Object.keys(counties).map((county) => (
           <option key={county} value={county}>
@@ -59,11 +89,12 @@ function App() {
           </option>
         ))}
       </select>
-      <button onClick={handleSubmit} disabled={disableButton}>submit</button>
+      <button onClick={handleSubmit} disabled={disableButton}>
+        submit
+      </button>
       {showCities && renderCities()}
     </div>
   );
 }
-
 
 export default App;

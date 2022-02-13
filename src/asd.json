@@ -1,7 +1,0 @@
-/*"country": {
-      "zala": {
-        "cities": ["zalaegerszeg"]
-      }
-    }
-
-    country['zala'].cities = [...cities, input]
